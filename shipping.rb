@@ -17,6 +17,7 @@ def main_menu
       list_parcel
     elsif choice == 'x'
       puts "Good-bye!"
+      puts "\n"
       exit
     else
       puts "Sorry, that wasn't a valid option."
@@ -39,9 +40,8 @@ def add_parcel
   puts "\n"
 
   this_parcel = Parcel.new(length, width, height, weight)
-  this_parcel_ship_cost = this_parcel.cost_to_ship
-  puts "The cost of shipping this parcel will be $#{this_parcel_ship_cost}"
-  puts "\n\n"
+  puts "The cost of shipping this parcel will be $#{this_parcel.cost_to_ship}"
+  puts "\n"
 
   @packages << this_parcel
 
@@ -51,11 +51,15 @@ def list_parcel
 
   puts "Here are the packages in your shipment"
   puts "\n"
+  total_shipping_cost = 0
   @packages.each do |package|
     puts "Your package is #{package.length} inches long, #{package.width} inches wide, #{package.height} inches high"
-    puts "The shipping cost is  #{package.cost_to_ship}"
+    puts "The shipping cost is  $#{(package.cost_to_ship).round(2)}"
+    total_shipping_cost += package.cost_to_ship
     puts "\n"
   end
+  puts "Your total shipping cost is $#{(total_shipping_cost).round(2)}"
+  puts "\n"
 end
 
 main_menu

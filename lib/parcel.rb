@@ -33,9 +33,9 @@ class Parcel
 
   def cost_to_ship
     if @length < 12 && @width < 12 && @height < 12
-      return @weight * 6.0
+      return (@weight * 0.6 + volume * 0.01).round(2)
     else
-      return @weight * 6.0 * 1.25
+      return ((@weight * 0.6 * 1.25) + (volume * 0.01)).round(2)
     end
   end
 end
